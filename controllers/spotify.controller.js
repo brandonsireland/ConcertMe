@@ -1,3 +1,14 @@
+var request = require('request');
+var querystring = require('querystring');
+
+var {
+    generateRandomString
+} = require('../utility');
+
+var {
+    spotifyConf
+} = require('../config');
+
 var login = function (req, res) {
 
     var state = generateRandomString(16);
@@ -56,7 +67,7 @@ var callBack = function (req, res) {
                     },
                     json: true
                 };
-                accesstoken.push(access_token);
+                // accesstoken.push(access_token);
                 console.log(access_token)
                 // use the access token to access the Spotify Web API
                 request.get(options, function (error, response, body) {
@@ -105,7 +116,7 @@ var refreshToken = function (req, res) {
     });
 };
 
-modules.export = {
+module.exports = {
     login,
     callBack,
     refreshToken

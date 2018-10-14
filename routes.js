@@ -1,18 +1,5 @@
-// Routes
-var request = require('request');
-var querystring = require('querystring');
-
-var {
-    generateRandomString
-} = require('./utility');
-
-var {
-    spotifyConf
-} = require('./config');
-
-var spotifyController = ('./controllers/spotify.controller.js')
-
-var accesstoken = [];
+var spotifyController = require('./controllers/spotify.controller.js');
+var musicController = require('./controllers/music.controller');
 
 module.exports = function (app) {
 

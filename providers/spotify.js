@@ -4,8 +4,7 @@ var {
     spotifyConf
 } = require('../config');
 
-
-var getTrackList = function (access_token, spotifyApi) {
+var getTopArtists = function (access_token, spotifyApi) {
 
     var spotifyApi = new SpotifyWebApi({
         clientId: spotifyConf.client_id,
@@ -14,7 +13,6 @@ var getTrackList = function (access_token, spotifyApi) {
     });
 
     var options = {
-        // time_range: 2,
         limit: 5,
         offset: 0,
     }
@@ -23,13 +21,12 @@ var getTrackList = function (access_token, spotifyApi) {
     return spotifyApi.getMyTopArtists(options)
         .then(
             function (data) {
-                // data.body = JSON.stringify(data.body, null, 4) || '';
 
-                const response = data.body.items.map(function(item, index, array){
-                    return { 
+                const response = data.body.items.map(function (item, index, array) {
+                    return {
                         images: item.images[0],
-                        name : item.name
-                     }
+                        name: item.name
+                    }
                 });
 
                 return response;
@@ -38,9 +35,8 @@ var getTrackList = function (access_token, spotifyApi) {
                 throw err;
             }
         )
-
 }
 
 module.exports = {
-    getTrackList
+    getTopArtists
 }
