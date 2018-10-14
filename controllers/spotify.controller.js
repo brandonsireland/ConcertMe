@@ -67,10 +67,10 @@ var callBack = function (req, res) {
                     },
                     json: true
                 };
-                // accesstoken.push(access_token);
-                console.log(access_token)
+
                 // use the access token to access the Spotify Web API
-                request.get(options, function (error, response, body) {
+                request
+                .get(options, function (error, response, body) {
                     console.log(body);
                 });
 

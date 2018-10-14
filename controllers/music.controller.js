@@ -7,7 +7,6 @@ var listArtists = function (req, res) {
         .then(
             function (data) {
                 res.send(data);
-                // res.sendfile('./views/artists.html');
             }
         ),
         function (err) {

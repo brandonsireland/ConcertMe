@@ -6,16 +6,13 @@ const personSchema = new Schema({
     name: String,
     country: String,
     spotify: {
-        id: String,
-        display_name: String,
-        access_token : String
+        type: Schema.Types.ObjectId,
+        ref: 'Spotify'
     },
-    artists: [
-        {
-            name: String,
-            image: String
-        }
-    ]
+    artists: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Artist',
+    }]
 });
 
-module.exports = mongoose.model('person', personSchema);
+module.exports = mongoose.model('Person', personSchema);
