@@ -64,17 +64,4 @@
       });
     }, false);
   }
-  // var spotifyApi = new SpotifyWebApi();
-
-  // function  getListofArtists(token) {
-  //   spotifyApi.setAccessToken(token);
-  //   spotifyApi.getMyTopArtists()
-  //     .then(function(data) {
-  //       console.log('Top Artists: ', data);
-  //     }, function(err) {
-  //       console.error(err);
-  //     });
-  // }
-  
-  // getListofArtists(access_token);
 })();
