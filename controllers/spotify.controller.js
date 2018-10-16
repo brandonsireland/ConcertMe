@@ -1,9 +1,7 @@
 var request = require('request');
 var querystring = require('querystring');
 
-var {
-    generateRandomString
-} = require('../utility');
+var util = require('../utility');
 
 var {
     spotifyConf
@@ -11,7 +9,7 @@ var {
 
 var login = function (req, res) {
 
-    var state = generateRandomString(16);
+    var state = util.generateRandomString(16);
     res.cookie(spotifyConf.stateKey, state);
 
     // your application requests authorization
@@ -69,9 +67,11 @@ var callBack = function (req, res) {
                 };
 
                 // use the access token to access the Spotify Web API
-                request
-                .get(options, function (error, response, body) {
-                    console.log(body);
+                request.get(options, function (error, response, body) {
+                    // console.log(body);
+
+                    // Should I put this here?
+                    util.checkSpotifyDocumentExists(body.id, body.display_name, access_token);
                 });
 
                 // we can also pass the token to the browser to make requests from there
