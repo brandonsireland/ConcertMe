@@ -1,10 +1,10 @@
-var SpotifyWebApi = require('spotify-web-api-node');
+const SpotifyWebApi = require('spotify-web-api-node');
 
-var {
+const {
     spotifyConf
 } = require('../config');
 
-var getTopArtists = function (access_token, spotifyApi) {
+var getTopArtists = function (access_token, refresh_token, spotifyApi) {
 
     var spotifyApi = new SpotifyWebApi({
         clientId: spotifyConf.client_id,
@@ -18,23 +18,24 @@ var getTopArtists = function (access_token, spotifyApi) {
     }
 
     spotifyApi.setAccessToken(access_token);
+    spotifyApi.setRefreshToken(refresh_token);
+
     return spotifyApi.getMyTopArtists(options)
-        .then(
-            function (data) {
+        .then(function (data) {
 
-                const response = data.body.items.map(function (item, index, array) {
-                    return {
-                        images: item.images[0],
-                        name: item.name
-                    }
-                });
+            const response = data.body.items.map(function (item) {
+                return {
+                    images: item.images[0],
+                    name: item.name
+                }
+            });
 
-                return response;
-            },
-            function (err) {
-                throw err;
-            }
-        )
+            return response;
+        })
+        .catch(function (err) {
+            console.log(err);
+            throw err;
+        })
 }
 
 module.exports = {

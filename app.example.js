@@ -1,21 +1,32 @@
-var express = require('express');
-var mongoose = require('mongoose');
-var cors = require('cors');
-var cookieParser = require('cookie-parser');
-var routes  = require('./routes');
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const routes  = require('./routes');
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
-var port = process.env.PORT || 8888;
-var mongoDB  = 'mongodb://<username>:<password>.mlab.com:29422/concertme';
+const port = process.env.PORT || 8888;
 
-var app = express();
+const util = require('./utility');
 
-app.use(express.static(__dirname + '/public'));
-app.use(cors())
-   .use(cookieParser());
+const mongoDB  = 'mongodb://<username>:<password>.mlab.com:29422/concertme';
+mongoose.connect(mongoDB, { useNewUrlParser: true });
+
+const app = express()
+    .use(express.static(__dirname + '/public'))
+    .use(cors())
+    .use(cookieParser())
+    .use(session({
+        resave: false,
+        saveUninitialized: true,
+        secret:util.generateRandomString(8),
+        store: new MongoStore({
+            url: mongoDB
+        }),
+    }))
 
 routes(app);
 
-mongoose.connect(mongoDB, { useNewUrlParser: true });
 
 app.listen(port);
-

@@ -1,9 +1,10 @@
-var request = require('request');
-var querystring = require('querystring');
+const request = require('request');
+const querystring = require('querystring');
+const session = require('express-session');
 
-var util = require('../utility');
+const util = require('../utility');
 
-var {
+const {
     spotifyConf
 } = require('../config');
 
@@ -39,6 +40,7 @@ var callBack = function (req, res) {
             }));
     } else {
         res.clearCookie(spotifyConf.stateKey);
+        
         var authOptions = {
             url: 'https://accounts.spotify.com/api/token',
             form: {
@@ -66,12 +68,17 @@ var callBack = function (req, res) {
                     json: true
                 };
 
+                // Storing Session Data into Cookie using Express Session
+                var sessData = req.session;
+                sessData.access_token = body.access_token;
+                sessData.refresh_token = body.refresh_token;
+
                 // use the access token to access the Spotify Web API
                 request.get(options, function (error, response, body) {
                     // console.log(body);
 
                     // Should I put this here?
-                    util.checkSpotifyDocumentExists(body.id, body.display_name, access_token);
+                    // util.checkSpotifyDocumentExists(body.id, body.display_name, access_token);
                 });
 
                 // we can also pass the token to the browser to make requests from there
@@ -109,6 +116,11 @@ var refreshToken = function (req, res) {
     request.post(authOptions, function (error, response, body) {
         if (!error && response.statusCode === 200) {
             var access_token = body.access_token;
+
+            // Refresh Token Data in Session
+            // var sessData = req.session;
+            // sessData.access_token = body.access_token;
+
             res.send({
                 'access_token': access_token
             });
