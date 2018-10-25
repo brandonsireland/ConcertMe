@@ -1,0 +1,20 @@
+// ----------------------------------------------
+// Settings - Typography
+// ----------------------------------------------
+
+@include font-face(
+  "Replica",
+  "../assets/fonts/lineto-replica",
+  ("woff2", "woff", "eot", "ttf")
+) {
+  font-style: normal;
+  font-weight: 400;
+}
+@include font-face(
+  "Replica",
+  "../assets/fonts/lineto-replica-bold",
+  ("woff2", "woff", "eot", "ttf")
+) {
+  font-style: normal;
+  font-weight: bold;
+}

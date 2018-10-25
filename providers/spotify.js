@@ -13,7 +13,7 @@ var getTopArtists = function (access_token, refresh_token, spotifyApi) {
     });
 
     var options = {
-        limit: 5,
+        limit: 50,
         offset: 0,
     }
 
@@ -24,9 +24,18 @@ var getTopArtists = function (access_token, refresh_token, spotifyApi) {
         .then(function (data) {
 
             const response = data.body.items.map(function (item) {
+                console.log(item.images);
+                let image;
+                filterImageHeight = () =>{
+                    item.images.filter(image =>{
+
+                    });
+                }
                 return {
-                    images: item.images[0],
-                    name: item.name
+                    genres: item.genres,
+                    href: item.href,
+                    imageUrl: item.images[0].url,
+                    artist: item.name,
                 }
             });
 

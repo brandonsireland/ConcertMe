@@ -1,0 +1,23 @@
+// ----------------------------------------------
+// Component - Header
+// ----------------------------------------------
+
+.navigation {
+    &__container {
+        width: 100%;
+        height: 80px;
+        display: flex;
+        background-color: $black;
+        padding: 0 30px;
+        // justify-content: space-between;
+    }
+    &__logo {
+        font-size: 48px;
+        line-height: 48px;
+    }
+    &__person {
+        margin-left: auto;
+        font-size: 22px;
+        font-weight: bold;
+    }
+}

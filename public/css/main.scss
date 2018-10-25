@@ -1,0 +1,71 @@
+/*
+Generic ITCSS Boilerplate Structure
+
+This boilerplate has been modeled after the methodology created by Harry Roberts
+For more information about the ITCSS methodology, visit: http://csswizardry.com/
+
+Contents:
+
+1. Settings
+	 
+	 Any project variables that are used globally: colors, fonts, etc.
+
+2. Tools
+
+	 Any mixins, animations, or functions used throughout the project.
+
+3. Generic
+
+	 This is where your reset/normalize & box-sizing styles go.
+	 If using Normalize, for example, rename the reset file to generic.normalize.scss
+
+4. Elements
+
+	 Bare HMTL elements are styled in this section (<h1>, <a>, <p>, etc.)
+
+5. Objects
+
+	 Non-cosmetic design patterns including grid and layout classes
+
+6. Components
+
+	 Specific pieces of UI that are stylized. This typically ends up being where the majority of your sheets are created.
+
+7. Trumps
+
+	 Contains anything that beats/"trumps" all other layers, ie8 fixes, utility and helper classes, and other overrides.
+
+8. Vendors
+
+	Contains all vendor/3rd party plugins
+	
+*/
+
+// Vendors
+@import 'vendors/vendors';
+
+// Settings
+@import 'settings/settings';
+
+// Tools
+@import 'tools/tools';
+
+// Generic
+@import 'generic/generic';
+
+// Elements
+@import 'elements/elements';
+
+// Objects
+@import 'objects/objects';
+
+// Components
+@import 'components/components';
+
+// Trumps
+@import 'trumps/trumps';
+
+
+
+
+

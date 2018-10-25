@@ -72,11 +72,11 @@ var callBack = function (req, res) {
                 var sessData = req.session;
                 sessData.access_token = body.access_token;
                 sessData.refresh_token = body.refresh_token;
+                sessData.display_name = body.display_name;
 
                 // use the access token to access the Spotify Web API
                 request.get(options, function (error, response, body) {
                     // console.log(body);
-
                     // Should I put this here?
                     // util.checkSpotifyDocumentExists(body.id, body.display_name, access_token);
                 });
@@ -118,8 +118,8 @@ var refreshToken = function (req, res) {
             var access_token = body.access_token;
 
             // Refresh Token Data in Session
-            // var sessData = req.session;
-            // sessData.access_token = body.access_token;
+            var sessData = req.session;
+            sessData.access_token = body.access_token;
 
             res.send({
                 'access_token': access_token
