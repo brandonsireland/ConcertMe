@@ -2,22 +2,6 @@
 // Component - Artists Page
 // ----------------------------------------------
 
-$artist-grid:(
-    columns: 12,
-    gutter: 30px
-);
-$artist-grid--tablet: (
-columns: 12,
-gutter: 25px,
-media: '(max-width: 1240px)'
-);
-
-$artist-grid--mobile: (
-columns: 12,
-gutter: 25px,
-media: '(max-width: 768px)'
-);
-
 .artists {
     background-color: $black;
     &__container {
@@ -25,7 +9,7 @@ media: '(max-width: 768px)'
         display: flex;
         flex-wrap: wrap;
         @include grid-container;
-        @include grid-visual;
+        // @include grid-visual;
     }
 }
 

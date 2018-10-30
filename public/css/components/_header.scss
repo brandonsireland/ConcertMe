@@ -9,15 +9,33 @@
         display: flex;
         background-color: $black;
         padding: 0 30px;
-        // justify-content: space-between;
+        align-items: center;
     }
     &__logo {
-        font-size: 48px;
-        line-height: 48px;
+        font-size: 36px;
+        line-height: 36px;
+        color: $white;
+        font-family: $font;
+        font-weight: bold;
+        user-select: none;
     }
     &__person {
         margin-left: auto;
         font-size: 22px;
         font-weight: bold;
+        color: $white;
+        font-family: $font;
+        user-select: none;
+    }
+    &__settings {
+        border: none;
+        background-color: transparent;
+        padding: 15px;
+        &:hover {
+            cursor: pointer;
+        }
+        &:focus {
+            outline: none;
+        }
     }
 }
