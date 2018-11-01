@@ -5,8 +5,8 @@ module.exports = function (app) {
 
     // Home route
     app.get('/', function (req, res) {
-        // res.render('index', {title: 'farts'})
-        res.sendfile('./views/index.html');
+        res.render('index', {title: 'farts'})
+        // res.sendfile('./views/index.html');
     });
 
     // Spotify API
