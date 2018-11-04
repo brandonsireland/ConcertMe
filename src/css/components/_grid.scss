@@ -81,10 +81,9 @@ $grid:(columns: 12, gutter: 0);
             &__container {
                 position: absolute;
                 top: 0;
-                bottom: 0;
+                bottom: 60px;
                 left: 0;
                 right: -17px;
-                // right: 0;
                 overflow-y: scroll;
             }
 

@@ -13,7 +13,6 @@ const listArtists = function (req, res) {
     getTopArtists(accessToken, spotifyConf)
         .then(
             function (data) {
-                console.log(typeof data)
                 res.render('home', {data});
             })
         .catch(function (err) {

@@ -17,7 +17,7 @@
             </div>
             <div class="navigation__person">
                 <span>
-                    Hello <span>Brandon</span> !
+                    Hello <span>Brandon {{ display_name }}</span> !
                 </span>
             </div>
             <button class="navigation__settings">
@@ -58,11 +58,6 @@
                         <div class="sidebar__info">
                             <span>{{ artist }}</span>
                         </div>
-                        {{!-- <div class="sidebar__tickets">
-                            <button>
-                                <span>Buy Tickets</span>
-                            </button>
-                        </div> --}}
                     </div>
                     {{/each}}
                     <!-- end artist -->

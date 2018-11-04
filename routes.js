@@ -19,11 +19,8 @@ module.exports = function (app) {
     app.get('/refresh_token', spotifyController.refreshToken);
 
     //  Home Page
-    // app.get('/home', function(req, res) {
-    //     res.render('home');
-    // })
     app.get('/home', musicController.listArtists);
     
     // Artists Page
-    app.get('/artists', musicController.listArtists);
+    // app.get('/artists', musicController.listArtists);
 };
