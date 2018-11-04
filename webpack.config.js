@@ -8,7 +8,8 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const config = {
   entry: { main: './src/app.js' },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    // path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'public/js/'),
     // filename: '[name].[chunkhash].js',
     filename: 'bundle.js'
   },
@@ -63,8 +64,8 @@ const config = {
   plugins: [
     new CleanWebpackPlugin('dist', {} ),
     new MiniCssExtractPlugin({
-      // filename: 'style.[contenthash].css'
-      filename: 'main.css'
+      // filename: '../css/main.[contenthash].css'
+      filename: '../css/main.css',
     }),
     // new HtmlWebpackPlugin({
     //   inject: false,
