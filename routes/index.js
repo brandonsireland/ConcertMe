@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const utilities = require('../utility');
+const auth = require('../controllers/auth.controller');
 
 // Get Register Page
 router.get('/register', function(req, res, next){
@@ -10,7 +10,7 @@ router.get('/register', function(req, res, next){
 // Post Register Page
 router.post('/register', function(req, res, next){
 
-    utilities.registerPerson(req, res);
+    auth.registerPerson(req, res);
 
 });
 
