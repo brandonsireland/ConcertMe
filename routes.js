@@ -5,7 +5,7 @@ module.exports = function (app) {
 
     // Home route
     app.get('/', function (req, res) {
-        res.render('index', {title: 'farts'})
+        res.render('index');
         // res.sendfile('./views/index.html');
     });
 
@@ -18,5 +18,12 @@ module.exports = function (app) {
     // Spotify API
     app.get('/refresh_token', spotifyController.refreshToken);
 
+    //  Home Page
+    // app.get('/home', function(req, res) {
+    //     res.render('home');
+    // })
+    app.get('/home', musicController.listArtists);
+    
+    // Artists Page
     app.get('/artists', musicController.listArtists);
 };

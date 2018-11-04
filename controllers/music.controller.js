@@ -14,12 +14,14 @@ const listArtists = function (req, res) {
         .then(
             function (data) {
                 console.log(typeof data)
-                res.render('artists', {data});
+                res.render('home', {data});
             })
         .catch(function (err) {
             console.log(err);
             throw err;
         })
+    
+    // res.render('home');
 };
 
 

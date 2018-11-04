@@ -3,13 +3,14 @@ require("babel-register");
 const WebpackMd5Hash = require('webpack-md5-hash');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+// const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const config = {
-  entry: { main: './src/index.js' },
+  entry: { main: './src/app.js' },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].[chunkhash].js',
+    // filename: '[name].[chunkhash].js',
+    filename: 'bundle.js'
   },
   module: {
     rules: [
@@ -62,14 +63,15 @@ const config = {
   plugins: [
     new CleanWebpackPlugin('dist', {} ),
     new MiniCssExtractPlugin({
-      filename: 'style.[contenthash].css'
+      // filename: 'style.[contenthash].css'
+      filename: 'main.css'
     }),
-    new HtmlWebpackPlugin({
-      inject: false,
-      hash: true,
-      template: './src/index.html',
-      filename: 'index.html'
-    }),
+    // new HtmlWebpackPlugin({
+    //   inject: false,
+    //   hash: true,
+    //   template: './src/index.html',
+    //   filename: 'index.html'
+    // }),
     new WebpackMd5Hash()
   ],
   watch: true,

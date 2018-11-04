@@ -76,17 +76,17 @@ var callBack = function (req, res) {
 
                 // use the access token to access the Spotify Web API
                 request.get(options, function (error, response, body) {
-                    // console.log(body);
                     // Should I put this here?
+                    // console.log(body);
                     // util.checkSpotifyDocumentExists(body.id, body.display_name, access_token);
                 });
-
                 // we can also pass the token to the browser to make requests from there
-                res.redirect('/#' +
-                    querystring.stringify({
-                        access_token: access_token,
-                        refresh_token: refresh_token
-                    }));
+                res.redirect('home');
+                // res.redirect('/#' +
+                //     querystring.stringify({
+                //         access_token: access_token,
+                //         refresh_token: refresh_token
+                //     }));
             } else {
                 res.redirect('/#' +
                     querystring.stringify({
