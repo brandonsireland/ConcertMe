@@ -1,9 +1,26 @@
 <div class="login">
     <div class="login__title">
       <h2>{{ title }}</h2>
+
+      {{#if errors}}
+        {{#each errors}}
+        <div class="login__alert">
+            <span>
+                {{this.msg}}
+            </span>
+        </div>
+        {{/each}}
+      {{/if}}
+      {{#if message}}
+        <div class="login__alert">
+            <span>
+                {{ message }}
+            </span>
+        </div>
+      {{/if}}
     </div>
   <div class="form__container">
-    <form class="form" method="POST" action="/registered">
+    <form class="form" method="POST" action="/register">
       <div class="form__element">
         <label for="username">Username</label>
         <input type="text" class="" name="username" placeholder="username">

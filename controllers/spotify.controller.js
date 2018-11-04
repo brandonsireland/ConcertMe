@@ -76,7 +76,6 @@ var callBack = function (req, res) {
 
                 // use the access token to access the Spotify Web API
                 request.get(options, function (error, response, body) {
-                    // Should I put this here?
                     // console.log(body);
                     // util.checkSpotifyDocumentExists(body.id, body.display_name, access_token);
                 });

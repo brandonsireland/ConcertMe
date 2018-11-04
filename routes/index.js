@@ -1,18 +1,21 @@
 const express = require('express');
-var router = express.Router();
+const router = express.Router();
+const utilities = require('../utility');
 
-// Get Home Page
-
-router.get('/', function(req, res, next){
-    res.render('index', {title: 'Login to Concert Me'});
+// Get Register Page
+router.get('/register', function(req, res, next){
+    res.render('register', {title: 'Login to Concert Me'});
 });
 
+// Post Register Page
 router.post('/register', function(req, res, next){
-    res.render('index', {title: 'Register to Concert Me'});
+
+    utilities.registerPerson(req, res);
+
 });
 
-router.post('/registered', function(req, res, next){
-    res.render('index', {title: 'Registration Complete'});
-});
+// router.post('/registered', function(req, res, next){
+//     res.render('index', {title: 'Registration Complete'});
+// });
 
 module.exports = router;

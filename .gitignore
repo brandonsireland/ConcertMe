@@ -3,3 +3,4 @@ app.js
 config.js
 public/css/vendors
 public/assets/
+db.js
