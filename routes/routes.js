@@ -1,11 +1,11 @@
-var spotifyController = require('./controllers/spotify.controller.js');
-var musicController = require('./controllers/music.controller');
+var spotifyController = require('../controllers/spotify.controller.js');
+var musicController = require('../controllers/music.controller');
 
 module.exports = function (app) {
 
     // Home route
     app.get('/', function (req, res) {
-        res.render('index');
+        res.render('index', {title: 'Register for Concert Me'});
         // res.sendfile('./views/index.html');
     });
 

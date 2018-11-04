@@ -8,7 +8,6 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const config = {
   entry: { main: './src/app.js' },
   output: {
-    // path: path.resolve(__dirname, 'dist'),
     path: path.resolve(__dirname, 'public/js/'),
     // filename: '[name].[chunkhash].js',
     filename: 'bundle.js'
@@ -53,8 +52,8 @@ const config = {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              publicPath: './src/assets',
-              emitFile: false,
+              publicPath: '../assets',
+              emitFile: true,
             }
           }
         ]
