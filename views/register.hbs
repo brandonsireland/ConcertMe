@@ -1,10 +1,11 @@
-<div class="login">
-    <div class="login__title">
+<div class="register">
+  <div class="form__container">
+    <div class="register__title">
       <h2>{{ title }}</h2>
 
       {{#if errors}}
         {{#each errors}}
-        <div class="login__alert">
+        <div class="register__alert">
             <span>
                 {{this.msg}}
             </span>
@@ -12,14 +13,13 @@
         {{/each}}
       {{/if}}
       {{#if message}}
-        <div class="login__alert">
+        <div class="register__alert">
             <span>
                 {{ message }}
             </span>
         </div>
       {{/if}}
     </div>
-  <div class="form__container">
     <form class="form" method="POST" action="/register">
       <div class="form__element">
         <label for="username">Username</label>
@@ -39,6 +39,8 @@
       </div>
       <button type="submit" class="form__submit">Submit</button>
     </form>
-
+    <div class="register__login">
+      <span>Already a user? Login <a href="/login">here.</a></span>
+    </div>
   </div>
 </div>

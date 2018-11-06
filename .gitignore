@@ -1,6 +1,5 @@
 /node_modules
-app.js
-config.js
+/config
 public/css/vendors
 public/assets/
 db.js

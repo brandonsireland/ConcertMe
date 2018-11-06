@@ -12,12 +12,14 @@
         align-items: center;
     }
     &__logo {
-        font-size: 36px;
-        line-height: 36px;
-        color: $white;
-        font-family: $font;
-        font-weight: bold;
-        user-select: none;
+        a {
+            font-size: 36px;
+            line-height: 36px;
+            color: $white;
+            font-family: $font;
+            font-weight: bold;
+            text-decoration: none;
+        }
     }
     &__person {
         margin-left: auto;
@@ -26,6 +28,7 @@
         color: $white;
         font-family: $font;
         user-select: none;
+        padding-right: 10px;
     }
     &__settings {
         border: none;
@@ -36,6 +39,23 @@
         }
         &:focus {
             outline: none;
+        }
+    }
+    &__links {
+        >ul {
+            list-style: none;
+            display: inline-flex;
+            li {
+                padding: 0 10px;
+                a {
+                    font-family: $font;
+                    text-decoration: none;
+                    color: $white;
+                    &:hover {
+                        color: rgba($white, 0.5);
+                    }
+                }
+            }
         }
     }
 }

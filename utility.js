@@ -1,8 +1,5 @@
 const Person = require('./models/person');
 const Spotify = require('./models/spotify');
-const expressValidator = require('express-validator');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 /**
  * Generates a random string containing numbers and letters

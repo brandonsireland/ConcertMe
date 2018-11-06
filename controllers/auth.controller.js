@@ -1,7 +1,6 @@
 const Person = require('../models/person');
 const expressValidator = require('express-validator');
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
+var passport = require('passport');
 
 var registerPerson = (req, res) => {
 
@@ -33,39 +32,27 @@ var registerPerson = (req, res) => {
 		const email = req.body.email;
 		const password = req.body.password;
 
+		Person.register(new Person({ username: username, email: email }), password, function (errors, user) {
 
-		//Encrypts users password
-		bcrypt.hash(password, saltRounds, function (err, hash) {
-
-			// Creates new user
-			let newPerson = new Person({
-				username: username,
-				email: email,
-				password: hash,
-			});
-			
-			// Save data into db
-			newPerson.save(function (errors) {
-				if (errors) {
-					if (errors.name === 'MongoError' && errors.code === 11000) {
-						return res.render('register', {
-							title: 'Registration Error',
-							message: 'Username or Email already exists'
-						});
-					}
-					// Some other error
-					return res.status(500).send(errors);
+			// Catches duplicate Username and Email errors
+			if (errors) {
+				if (errors.name === 'MongoError' && errors.code === 11000) {
+					return res.render('register', {
+						title: 'Registration Error',
+						message: 'Username or Email already exists'
+					});
 				}
-
-				res.render('register', {
-					title: 'Registation complete'
-				});
-
+				// Some other error
+				return res.status(500).send(errors);
+			};
+			
+			passport.authenticate("local")(req, res, function () {
+					res.render('profile');
 			});
 		});
 	}
 };
 
 module.exports = {
-    registerPerson
+	registerPerson
 };

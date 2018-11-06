@@ -1,0 +1,30 @@
+.register {
+    background-color: $white;
+    width: 100%;
+    height: calc(100vh - 5vh);
+    overflow: hidden;
+    &__title {
+       display: flex;
+       justify-content: center;
+       padding-bottom: 25px;
+       flex-direction: column;
+       h2 {
+           width: 100%;
+           padding-bottom: 15px;
+           text-align: center;
+       }
+        @media (max-width: 768px){
+            padding-top: 50px;
+        }
+    }
+    &__alert {
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+        border: 1px solid red;
+        background-color: rgba(red, 0.5);
+    }
+    &__login {
+        padding: 10px;
+    }
+}

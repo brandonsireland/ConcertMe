@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
+const passportLocalMongoose = require('passport-local-mongoose');
 
 const personSchema = new Schema({
     name: {
@@ -19,8 +19,7 @@ const personSchema = new Schema({
     },
     country: String,
     password: {
-        type: String,
-        required: true
+        type: String
     },
     spotify: {
         type: Schema.Types.ObjectId,
@@ -31,5 +30,7 @@ const personSchema = new Schema({
         ref: 'Artist',
     }]
 });
+
+personSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('Person', personSchema);

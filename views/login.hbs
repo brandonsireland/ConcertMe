@@ -1,0 +1,21 @@
+<div class="login">
+    <div class="form__container">
+        <div class="login__title">
+            <h1>{{ title }}</h1>
+        </div>
+         <form class="form" method="POST" action="/login">
+         <div class="form__element">
+             <label for="username">Username</label>
+             <input type="text" name="username" placeholder="Enter Username">
+         </div>
+         <div class="form__element">
+             <label for="password">Password</label>
+            <input type="password" name="password" placeholder="Enter Password">
+         </div>
+             <button type="submit" class="form__submit">Submit</button>
+         </form>
+         <div class="login__register">
+             <span>Not a user? Sign up <a href="/register">here.</a></span>
+         </div>
+    </div>
+</div>
