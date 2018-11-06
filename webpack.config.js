@@ -46,14 +46,26 @@ const config = {
         ]
       },
       {
-        test: /\.(jpe|jpg|woff|woff2|eot|ttf|svg)(\?.*$|$)/,
+        test: /\.(woff|woff2|eot|ttf|svg)(\?.*$|$)/,
         use: [
           {
             loader: 'file-loader',
             options: {
               name: '[name].[ext]',
-              publicPath: '../assets',
+              outputPath: '/fonts',
               emitFile: true,
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(jpe|jpg|png|svg)(\?.*$|$)/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: '/img',
             }
           }
         ]
@@ -61,7 +73,7 @@ const config = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin('dist', {} ),
+    new CleanWebpackPlugin(['public/css', 'public/js'], {} ),
     new MiniCssExtractPlugin({
       // filename: '../css/main.[contenthash].css'
       filename: '../css/main.css',
