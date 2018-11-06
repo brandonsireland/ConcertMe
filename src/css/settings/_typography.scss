@@ -2,19 +2,22 @@
 // Settings - Typography
 // ----------------------------------------------
 
-// @include font-face(
-//   "Replica",
-//   "../../../../assets/fonts/lineto-replica",
-//   ("woff2", "woff", "eot", "ttf")
-// ) {
-//   font-style: normal;
-//   font-weight: 400;
-// }
-// @include font-face(
-//   "Replica",
-//   "../../../../assets/fonts/lineto-replica-bold",
-//   ("woff2", "woff", "eot", "ttf")
-// ) {
-//   font-style: normal;
-//   font-weight: bold;
-// }
+@include font-face(
+  "Replica",
+  "/fonts/lineto-replica",
+  ("woff2", "woff", "eot", "ttf")
+) {
+  font-style: normal;
+  font-weight: 400;
+}
+@include font-face(
+  "Replica",
+  "/fonts/lineto-replica-bold",
+  ("woff2", "woff", "eot", "ttf")
+) {
+  font-style: normal;
+  font-weight: bold;
+}
+a,p,span,h1,h2,h3,h4,h5,h6 {
+    font-family: $font
+}

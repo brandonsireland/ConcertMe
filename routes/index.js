@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../controllers/auth.controller');
-
 const passport = require('passport');
 
 // =====================================
@@ -10,8 +9,9 @@ const passport = require('passport');
 
 router.get('/', function (req, res) {
     console.log(req.user);
+    console.log(req.user)
     console.log(req.isAuthenticated())
-    res.render('home');
+    res.render('home', {user: req.user});
 });
 
 // =====================================
@@ -35,11 +35,20 @@ router.get('/login', function (req, res) {
 });
 
 router.post('/login', passport.authenticate('local',{
-    successRedirect: 'profile',
+    successRedirect: '/profile',
     failureRedirect: '/login'
-}), function (req, res) {
-    res.render('home');
-})
+}));
+
+// =====================================
+// PROFILE =============================
+// =====================================
+
+// router.get('/profile', auth.isLoggedIn, function(req, res, next) {
+//     res.render('profile', {user: req.user});
+// });
+router.get('/profile', function(req, res, next) {
+    res.render('profile', {user: req.user});
+});
 
 // =====================================
 // LOGOUT ==============================

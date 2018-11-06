@@ -19,7 +19,6 @@ const configDatabase = require('./config/database');
 // Routes 
 const indexRoutes = require('./routes/index');
 const userRoutes = require('./routes/user');
-// const routes  = require('./routes/routes');
 
 const app = express();
 

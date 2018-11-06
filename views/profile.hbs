@@ -1,2 +1,20 @@
-<h2>Profile Page</h2>
-<h2>Welcome {{req.user}}</h2>
+<div class="profile">
+    <div class="profile__container">
+        <div class="user__container">
+            <div class="user__settings">
+                <h2>User Settings</h2>
+            </div>
+        </div>
+        <div class="user__container">
+            <div class="user__connect">
+                <div class="user__logo">
+                    <img src="/img/Spotify_logo_with_text.svg.png" alt="">
+                </div>
+                <div class="user__login">
+                    <button class="user__button user__button--spotify">Connect</button>
+                </div>
+            </div>
+            {{!-- <div class="user__connect"></div> --}}
+        </div>
+    </div>
+</div>

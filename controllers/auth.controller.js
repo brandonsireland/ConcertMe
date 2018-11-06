@@ -32,7 +32,10 @@ var registerPerson = (req, res) => {
 		const email = req.body.email;
 		const password = req.body.password;
 
-		Person.register(new Person({ username: username, email: email }), password, function (errors, user) {
+		Person.register(new Person({
+			username: username,
+			email: email
+		}), password, function (errors, user) {
 
 			// Catches duplicate Username and Email errors
 			if (errors) {
@@ -45,14 +48,26 @@ var registerPerson = (req, res) => {
 				// Some other error
 				return res.status(500).send(errors);
 			};
-			
+
 			passport.authenticate("local")(req, res, function () {
-					res.render('profile');
+				res.render('profile');
 			});
 		});
 	}
 };
 
+// route middleware to make sure a user is logged in
+function isLoggedIn(req, res, next) {
+
+	// if user is authenticated in the session, carry on 
+	if (req.isAuthenticated())
+		return next();
+
+	// if they aren't redirect them to the home page
+	res.redirect('/');
+};
+
 module.exports = {
-	registerPerson
+	registerPerson,
+	isLoggedIn
 };
