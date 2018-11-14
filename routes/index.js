@@ -11,7 +11,7 @@ const musicController = require('../controllers/music.controller');
 // =====================================
 
 router.get('/', auth.isLoggedIn, function (req, res) {
-    console.log(req.user);
+    // console.log(req.user);
     res.render('home', {user: req.user});
 });
 

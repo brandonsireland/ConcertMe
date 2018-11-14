@@ -61,9 +61,9 @@ router.get(
   function (req, res) {
 
     // Save Top artists
-    console.log(musicController.listArtists)
+    console.log(musicController.listArtists())
 
-    console.log(res)
+    // console.log(res)
 
   }
 );

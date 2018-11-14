@@ -56,6 +56,10 @@
         &--spotify {
             background-color: $spotify ;
         }
+        a {
+            color: $white;
+            text-decoration: none;
+        }
         &:hover {
             cursor: pointer;
         }
