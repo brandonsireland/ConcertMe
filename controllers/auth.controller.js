@@ -27,14 +27,15 @@ var registerPerson = (req, res) => {
 		});
 
 	} else {
-
 		const username = req.body.username;
 		const email = req.body.email;
 		const password = req.body.password;
+		const country = req.body.country;
 
 		Person.register(new Person({
 			username: username,
-			email: email
+			email: email,
+			country: country
 		}), password, function (errors, user) {
 
 			// Catches duplicate Username and Email errors
@@ -49,8 +50,8 @@ var registerPerson = (req, res) => {
 				return res.status(500).send(errors);
 			};
 
-			passport.authenticate("local")(req, res, function () {
-				res.render('profile');
+			passport.authenticate("local", {successRedirect: '/profile'})(req, res, function () {
+				// res.render('profile');
 			});
 		});
 	}
@@ -59,12 +60,10 @@ var registerPerson = (req, res) => {
 // route middleware to make sure a user is logged in
 function isLoggedIn(req, res, next) {
 
-	// if user is authenticated in the session, carry on 
 	if (req.isAuthenticated())
 		return next();
 
-	// if they aren't redirect them to the home page
-	res.redirect('/');
+	res.redirect('/register');
 };
 
 module.exports = {

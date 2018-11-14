@@ -1,46 +1,62 @@
 <div class="register">
-  <div class="form__container">
-    <div class="register__title">
-      <h2>{{ title }}</h2>
+	<div class="form__container">
+		<div class="register__title">
+			<h2>{{ title }}</h2>
 
-      {{#if errors}}
-        {{#each errors}}
-        <div class="register__alert">
-            <span>
-                {{this.msg}}
-            </span>
-        </div>
-        {{/each}}
-      {{/if}}
-      {{#if message}}
-        <div class="register__alert">
-            <span>
-                {{ message }}
-            </span>
-        </div>
-      {{/if}}
-    </div>
-    <form class="form" method="POST" action="/register">
-      <div class="form__element">
-        <label for="username">Username</label>
-        <input type="text" class="" name="username" placeholder="username">
-      </div>
-      <div class="form__element">
-        <label for="email">Email address</label>
-        <input type="email" class="" name="email" placeholder="Your Email">
-      </div>
-      <div class="form__element">
-        <label for="password">Password</label>
-        <input type="password" class="" name="password" placeholder="Enter a Password">
-      </div>
-      <div class="form__element">
-        <label for="passwordMatch">Re-Enter Password</label>
-        <input type="password" class="" name="passwordMatch" placeholder="Re-enter your Password">
-      </div>
-      <button type="submit" class="form__submit">Submit</button>
-    </form>
-    <div class="register__login">
-      <span>Already a user? Login <a href="/login">here.</a></span>
-    </div>
-  </div>
+			{{#if errors}}
+			{{#each errors}}
+			<div class="register__alert">
+				<span>
+					{{this.msg}}
+				</span>
+			</div>
+			{{/each}}
+			{{/if}}
+			{{#if message}}
+			<div class="register__alert">
+				<span>
+					{{ message }}
+				</span>
+			</div>
+			{{/if}}
+		</div>
+		<form class="form" method="POST" action="/register">
+			<div class="form__element">
+				<label for="username">Username</label>
+				<input type="text" class="" name="username" placeholder="username">
+			</div>
+			<div class="form__element">
+				<label for="country">Country</label>
+				{{#if country}}
+				<select name="country">
+					{{#each country}}
+						<option 
+						value="{{this.name}}"
+						{{#ifEquals expected="United States" val=this.name}}
+						selected
+						{{/ifEquals}}>
+							{{this.name}}
+						</option>
+					{{/each}}
+				</select>
+				{{/if}}
+			</div>
+			<div class="form__element">
+				<label for="email">Email address</label>
+				<input type="email" class="" name="email" placeholder="Your Email">
+			</div>
+			<div class="form__element">
+				<label for="password">Password</label>
+				<input type="password" class="" name="password" placeholder="Enter a Password">
+			</div>
+			<div class="form__element">
+				<label for="passwordMatch">Re-Enter Password</label>
+				<input type="password" class="" name="passwordMatch" placeholder="Re-enter your Password">
+			</div>
+			<button type="submit" class="form__submit">Submit</button>
+		</form>
+		<div class="register__login">
+			<span>Already a user? Login <a href="/login">here.</a></span>
+		</div>
+	</div>
 </div>

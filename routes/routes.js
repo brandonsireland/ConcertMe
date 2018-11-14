@@ -3,11 +3,6 @@ var musicController = require('../controllers/music.controller');
 
 module.exports = function (app) {
 
-    // Home route
-    app.get('/', function (req, res) {
-        res.render('index', {title: 'Register for Concert Me'});
-        // res.sendfile('./views/index.html');
-    });
 
     // Spotify API
     app.get('/login', spotifyController.login);

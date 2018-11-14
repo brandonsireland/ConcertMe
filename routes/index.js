@@ -1,16 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const auth = require('../controllers/auth.controller');
 const passport = require('passport');
+const country = require('../providers/country-data');
+
+const auth = require('../controllers/auth.controller');
+const musicController = require('../controllers/music.controller');
 
 // =====================================
 // HOME PAGE ===========================
 // =====================================
 
-router.get('/', function (req, res) {
+router.get('/', auth.isLoggedIn, function (req, res) {
     console.log(req.user);
-    console.log(req.user)
-    console.log(req.isAuthenticated())
     res.render('home', {user: req.user});
 });
 
@@ -19,7 +20,8 @@ router.get('/', function (req, res) {
 // =====================================
 
 router.get('/register', function (req, res) {
-    res.render('register', { title: 'Login to Concert Me' });
+    
+    res.render('register', { title: 'Register to Concert Me', country: country.getAllCountries()});
 });
 
 router.post('/register', function (req, res) {

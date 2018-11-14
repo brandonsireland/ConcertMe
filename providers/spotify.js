@@ -2,7 +2,7 @@ const SpotifyWebApi = require('spotify-web-api-node');
 
 const {
     spotifyConf
-} = require('../config');
+} = require('../config/spotify');
 
 var getTopArtists = function (access_token, refresh_token, spotifyApi) {
 

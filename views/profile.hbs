@@ -3,6 +3,7 @@
         <div class="user__container">
             <div class="user__settings">
                 <h2>User Settings</h2>
+                <i class="fas fa-cog"></i>
             </div>
         </div>
         <div class="user__container">
@@ -11,7 +12,12 @@
                     <img src="/img/Spotify_logo_with_text.svg.png" alt="">
                 </div>
                 <div class="user__login">
-                    <button class="user__button user__button--spotify">Connect</button>
+                    <button class="user__button user__button--spotify" href="/user/spotify-login">
+                        <a href="/user/spotify-login">
+                            Connect
+                        </a>
+                    </button>
+                    {{!-- <button class="user__button user__button--spotify">Disconnect</button> --}}
                 </div>
             </div>
             {{!-- <div class="user__connect"></div> --}}

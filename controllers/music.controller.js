@@ -1,5 +1,5 @@
 const session = require('express-session');
-const spotifyConf = require('../config');
+const spotifyConf = require('../config/spotify');
 
 const {
     getTopArtists
