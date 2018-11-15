@@ -15,5 +15,5 @@ module.exports = function (app) {
 
     
     // Artists Page
-    app.get('/artists', musicController.listArtists);
+    app.get('/artists', musicController.saveArtists);
 };

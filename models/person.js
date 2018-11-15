@@ -7,7 +7,7 @@ const personSchema = new Schema({
         first: String,
         last: String,
     },
-    username:{
+    username: {
         type: String,
         unique: true,
         index: true
@@ -17,7 +17,9 @@ const personSchema = new Schema({
         unique: true,
         index: true
     },
-    country: String,
+    country: {
+        type: String
+    },
     password: {
         type: String
     },

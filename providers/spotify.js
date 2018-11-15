@@ -24,6 +24,7 @@ var getTopArtists = function (access_token, refresh_token, spotifyApi) {
         .then(function (data) {
 
             const response = data.body.items.map(function (item) {
+                console.log(item.name);
                 return {
                     genres: item.genres,
                     href: item.href,

@@ -5,10 +5,11 @@ const {
     getTopArtists
 } = require('../providers/spotify');
 
-const listArtists = function (req, res) {
+const saveArtists = function (req, res) {
 
 
     var accessToken = req.session.access_token;
+    console.log(accessToken)
 
     getTopArtists(accessToken, spotifyConf)
         .then(
@@ -25,5 +26,5 @@ const listArtists = function (req, res) {
 
 
 module.exports = {
-    listArtists
+    saveArtists
 };
