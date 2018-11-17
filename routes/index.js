@@ -38,29 +38,8 @@ router.get('/login', function (req, res) {
 });
 
 router.post('/login', passport.authenticate('local',{
-    successRedirect: '/profile',
+    successRedirect: '/user/profile',
     failureRedirect: '/login'
 }));
-
-// =====================================
-// PROFILE =============================
-// =====================================
-
-// router.get('/profile', auth.isLoggedIn, function(req, res, next) {
-//     res.render('profile', {user: req.user});
-// });
-router.get('/profile', function(req, res, next) {
-    res.render('profile', {user: req.user});
-});
-
-// =====================================
-// LOGOUT ==============================
-// =====================================
-
-router.get('/logout', function (req, res) {
-    req.logout();
-    req.session.destroy();
-    res.redirect('/');
-});
 
 module.exports = router;

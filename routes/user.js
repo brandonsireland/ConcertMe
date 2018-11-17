@@ -12,6 +12,15 @@ const musicController = require('../controllers/music.controller');
 var Person = require('../models/person');
 var Spotify = require('../models/spotify');
 
+
+// =====================================
+// PROFILE =============================
+// =====================================
+
+router.get('/profile',auth.isLoggedIn, function(req, res, next) {
+    res.render('profile', {user: req.user});
+});
+
 // =====================================
 // ARTISTS =============================
 // =====================================
@@ -89,5 +98,15 @@ router.get(
 		res.redirect('/');
 	}
 );
+
+// =====================================
+// LOGOUT ==============================
+// =====================================
+
+router.get('/logout', function (req, res) {
+    req.logout();
+    req.session.destroy();
+    res.redirect('/');
+});
 
 module.exports = router;

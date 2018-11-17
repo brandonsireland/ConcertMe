@@ -50,7 +50,9 @@ var registerPerson = (req, res) => {
 				return res.status(500).send(errors);
 			};
 
-			passport.authenticate("local", {successRedirect: '/profile'})(req, res, function () {});
+			passport.authenticate("local", {
+				successRedirect: '/profile'
+			})(req, res, function () {});
 		});
 	}
 };
