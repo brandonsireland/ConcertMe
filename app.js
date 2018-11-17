@@ -60,7 +60,7 @@ app.use(express.static(path.join(__dirname, 'public')))
     // Running passport through our passport configuration
 require('./config/passport')(passport); // Don't know if Im using this right
     app.use('/', indexRoutes);
-    app.use('/user', userRoutes);
+    app.use('/user', userRoutes);       
 
 
 app.listen(port);

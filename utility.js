@@ -1,6 +1,3 @@
-const Person = require('./models/person');
-const Spotify = require('./models/spotify');
-
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string

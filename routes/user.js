@@ -35,34 +35,36 @@ passport.use(
 	new SpotifyStrategy({
 			clientID: spotifyConf.client_id,
 			clientSecret: spotifyConf.client_secret,
-			callbackURL: spotifyConf.redirect_uri
+			callbackURL: spotifyConf.redirect_uri,
+			passReqToCallback: true
 		},
-		function (accessToken, refreshToken, expires_in, profile, done) {
+		function (req, accessToken, refreshToken, expires_in, profile, done) {
 
 			process.nextTick(function () {
 
-				Person.findOne({ spotify_id: profile.id }, function (err, user) {
-					console.log(user)
-					
-					if (!user) {
-						user = new Spotify({
+
+				Person.findOne({
+					'spotify.spotify_id': profile.id
+				}, function (err, user) {
+					if (err)
+						return done(err);
+
+						// user already exists and is logged in, we have to link accounts
+						newSpoty = new Spotify({
 							Spotify_id: profile.id,
 							display_name: profile.displayName,
 							access_token: profile.accessToken,
 							refresh_token: profile.refreshToken,
 							profile_pic: profile.photos[0],
-							// person: profile._id
+							person: req.user._id
 						});
 
-						user.save(function (err) {
+						newSpoty.save(function (err) {
 							if (err) console.log(err);
 							return done(err, user);
 						});
 
-					}
-
 				});
-				
 			});
 		}
 	)
