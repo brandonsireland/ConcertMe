@@ -65,5 +65,9 @@ const userRoutes = require('./routes/user')(app, express, passport);
 app.use('/', indexRoutes);
 app.use('/user', userRoutes);
 
+// redirect unknown routes
+app.all('*', function(req, res) {
+    res.redirect('/register');
+  });
 
 app.listen(port);

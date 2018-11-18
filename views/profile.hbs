@@ -2,7 +2,7 @@
     <div class="profile__container">
         <div class="user__container">
             <div class="user__settings">
-                <h2>User Settings</h2>
+                <h2>User Settings </h2>
                 <i class="fas fa-cog"></i>
             </div>
         </div>
@@ -12,11 +12,19 @@
                     <img src="/img/Spotify_logo_with_text.svg.png" alt="">
                 </div>
                 <div class="user__login">
-                    <button class="user__button user__button--spotify" href="/user/spotify-login">
+                    {{#if user.spotify.spotify_id}}
+                    <button class="user__button user__button--spotify">
+                        <a href="/user/spotify-unlink">
+                            Unlink Account
+                        </a>
+                    </button>
+                    {{else}}
+                    <button class="user__button user__button--spotify">
                         <a href="/user/spotify-login">
                             Connect
                         </a>
                     </button>
+                    {{/if}}
                     {{!-- <button class="user__button user__button--spotify">Disconnect</button> --}}
                 </div>
             </div>

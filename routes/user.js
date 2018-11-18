@@ -22,7 +22,7 @@ module.exports = function (app, express, passport) {
 	// ARTISTS =============================
 	// =====================================
 
-	router.get('/artists', auth.isLoggedIn, musicController.saveArtists);
+	// router.get('/artists', auth.isLoggedIn, musicController.saveArtists);
 
 	// =====================================
 	// SPOTIFY =============================
@@ -48,6 +48,22 @@ module.exports = function (app, express, passport) {
 			res.redirect('/');
 		}
 	);
+
+	router.get('/spotify-unlink', function(req, res) {
+		var user = req.user;
+
+		user.spotify.spotify_id = undefined;
+		user.spotify.access_token = undefined;
+		user.spotify.refresh_token = undefined;
+		user.spotify.display_name = undefined;
+		user.spotify.profile_pic = undefined;
+		user.save(function(err){
+			if(err){
+				throw err;
+			}
+		res.redirect('/user/profile');
+		})
+	})
 
 	// =====================================
 	// LOGOUT ==============================

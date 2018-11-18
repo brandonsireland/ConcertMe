@@ -21,18 +21,112 @@
             </div>
             <div class="sidebar">
                 <div class="sidebar__container">
-                    <!-- artist -->
-                    {{#each data}}
-                    <div class="sidebar__artist">
-                        <div class="sidebar__photo">
-                            <img src="{{ imageUrl }}" alt="">
+                    {{#if data}}
+                        {{#each data}}
+                        <!-- artist -->
+                        <div class="sidebar__artist">
+                            <div class="sidebar__photo">
+                                <img src="{{ imageUrl }}" alt="">
+                            </div>
+                            <div class="sidebar__info">
+                                <span>{{ artist }}</span>
+                            </div>
                         </div>
-                        <div class="sidebar__info">
-                            <span>{{ artist }}</span>
+                        <!-- end artist -->
+                        {{/each}}
+                    {{else}}
+                        <div class="sidebar__getartists">
+                            <button>
+                                <span>
+                                    Fetch Artists
+                                </span>
+                            </button>
                         </div>
-                    </div>
-                    {{/each}}
-                    <!-- end artist -->
+                        <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                        <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                        <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                         <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                        <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                        <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                         <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                        <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                        <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                         <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                        <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                        <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                         <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                        <div class="sidebar__artist">
+                            <div class="sidebar__photo sidebar__photo--inactive">
+                            </div>
+                            <div class="sidebar__info sidebar__info--inactive">
+                            </div>
+                        </div>
+                    {{/if}}
                 </div>
             </div>
             <div class="map">
