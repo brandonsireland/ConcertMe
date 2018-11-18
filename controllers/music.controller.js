@@ -3,8 +3,9 @@ const {
     getTopArtists
 } = require('../providers/spotify');
 
-const saveArtists = function (req, res) {
+const getArtists = function (req, res) {
 
+    console.log(req.session)
     const accessToken = req.user.spotify.access_token;
     const refreshToken = req.user.spotify.refresh_token
     const user = req.user;
@@ -52,5 +53,5 @@ saveArtistData = (user, data) => {
 
 
 module.exports = {
-    saveArtists
+    getArtists
 };

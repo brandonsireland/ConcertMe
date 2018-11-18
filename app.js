@@ -66,8 +66,8 @@ app.use('/', indexRoutes);
 app.use('/user', userRoutes);
 
 // redirect unknown routes
-app.all('*', function(req, res) {
+app.all('*', function (req, res) {
     res.redirect('/register');
-  });
+});
 
 app.listen(port);

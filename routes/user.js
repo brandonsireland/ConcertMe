@@ -44,7 +44,7 @@ module.exports = function (app, express, passport) {
 		}),
 		function (req, res) {
 
-			// musicController.saveArtists(req, res);
+			// musicController.getArtists(req, res);
 			res.redirect('/');
 		}
 	);

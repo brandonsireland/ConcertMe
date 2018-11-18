@@ -4,21 +4,21 @@ const {
     spotifyConf
 } = require('../config/spotify');
 
-spotifyApi = new SpotifyWebApi({
-    clientId: spotifyConf.client_id,
-    clientSecret: spotifyConf.client_secret,
-    redirectUri: spotifyConf.redirect_uri
-});
+// spotifyApi = new SpotifyWebApi({
+//     clientId: spotifyConf.client_id,
+//     clientSecret: spotifyConf.client_secret,
+//     redirectUri: spotifyConf.redirect_uri
+// });
 
-setSpotifyTokens = (access_token, refresh_token) => {
-    spotifyApi.setAccessToken(access_token);
-    spotifyApi.setRefreshToken(refresh_token);
+// setSpotifyTokens = (access_token, refresh_token) => {
+//     spotifyApi.setAccessToken(access_token);
+//     spotifyApi.setRefreshToken(refresh_token);
     
-}
+// }
 
-var getTopArtists = function (access_token, refresh_token, spotifyApi) {
+var getTopArtists = function (access_token, refresh_token) {
 
-    setSpotifyTokens(access_token, refresh_token);
+    // setSpotifyTokens(access_token, refresh_token);
 
     var options = {
         limit: 50,
