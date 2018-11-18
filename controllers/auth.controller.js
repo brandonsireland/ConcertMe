@@ -51,7 +51,7 @@ var registerPerson = (req, res) => {
 			};
 
 			passport.authenticate("local", {
-				successRedirect: '/profile'
+				successRedirect: '/user/profile'
 			})(req, res, function () {});
 		});
 	}

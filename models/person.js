@@ -24,12 +24,15 @@ const personSchema = new Schema({
         type: String
     },
     spotify: {
-        type: Schema.Types.ObjectId,
-        ref: 'Spotify'
+        spotify_id: String,
+        display_name: String,
+        access_token: String,
+        refresh_token: String,
+        profile_pic: String,
     },
     artists: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Artist',
+        name: String,
+        image: String
     }]
 });
 

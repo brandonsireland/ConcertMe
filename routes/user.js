@@ -1,112 +1,63 @@
-const express = require('express');
-const router = express.Router();
-var passport = require('passport');
-var SpotifyStrategy = require('passport-spotify').Strategy;
+module.exports = function (app, express, passport) {
 
-const auth = require('../controllers/auth.controller');
-var {
-	spotifyConf
-} = require('../config/spotify');
-const musicController = require('../controllers/music.controller');
+	const router = express.Router();
 
-var Person = require('../models/person');
-var Spotify = require('../models/spotify');
+	const auth = require('../controllers/auth.controller');
+	const {
+		spotifyConf
+	} = require('../config/spotify');
+	const musicController = require('../controllers/music.controller');
 
+	// =====================================
+	// PROFILE =============================
+	// =====================================
 
-// =====================================
-// PROFILE =============================
-// =====================================
+	router.get('/profile', auth.isLoggedIn, function (req, res, next) {
+		res.render('profile', {
+			user: req.user
+		});
+	});
 
-router.get('/profile',auth.isLoggedIn, function(req, res, next) {
-    res.render('profile', {user: req.user});
-});
+	// =====================================
+	// ARTISTS =============================
+	// =====================================
 
-// =====================================
-// ARTISTS =============================
-// =====================================
+	router.get('/artists', auth.isLoggedIn, musicController.saveArtists);
 
-router.get('/artists', auth.isLoggedIn, musicController.saveArtists);
+	// =====================================
+	// SPOTIFY =============================
+	// =====================================
 
-// =====================================
-// SPOTIFY =============================
-// =====================================
+	router.get(
+		'/spotify-login',
+		passport.authenticate('spotify', {
+			scope: spotifyConf.scope,
+			showDialog: true
+		}),
+		function (req, res) {}
+	);
 
-passport.serializeUser(function (user, done) {
-	done(null, user);
-});
+	router.get(
+		'/callback',
+		passport.authenticate('spotify', {
+			failureRedirect: '/login'
+		}),
+		function (req, res) {
 
-passport.deserializeUser(function (obj, done) {
-	done(null, obj);
-});
-
-
-passport.use(
-	new SpotifyStrategy({
-			clientID: spotifyConf.client_id,
-			clientSecret: spotifyConf.client_secret,
-			callbackURL: spotifyConf.redirect_uri,
-			passReqToCallback: true
-		},
-		function (req, accessToken, refreshToken, expires_in, profile, done) {
-
-			process.nextTick(function () {
-
-
-				Person.findOne({
-					'spotify.spotify_id': profile.id
-				}, function (err, user) {
-					if (err)
-						return done(err);
-
-						// user already exists and is logged in, we have to link accounts
-						newSpoty = new Spotify({
-							Spotify_id: profile.id,
-							display_name: profile.displayName,
-							access_token: profile.accessToken,
-							refresh_token: profile.refreshToken,
-							profile_pic: profile.photos[0],
-							person: req.user._id
-						});
-
-						newSpoty.save(function (err) {
-							if (err) console.log(err);
-							return done(err, user);
-						});
-
-				});
-			});
+			// musicController.saveArtists(req, res);
+			res.redirect('/');
 		}
-	)
-);
+	);
 
-router.get(
-	'/spotify-login',
-	passport.authenticate('spotify', {
-		scope: spotifyConf.scope,
-		showDialog: true
-	}),
-	function (req, res) {}
-);
+	// =====================================
+	// LOGOUT ==============================
+	// =====================================
 
-router.get(
-	'/callback',
-	passport.authenticate('spotify', {
-		failureRedirect: '/login'
-	}),
-	function (req, res) {
-
+	router.get('/logout', function (req, res) {
+		req.logout();
+		req.session.destroy();
 		res.redirect('/');
-	}
-);
+	});
 
-// =====================================
-// LOGOUT ==============================
-// =====================================
-
-router.get('/logout', function (req, res) {
-    req.logout();
-    req.session.destroy();
-    res.redirect('/');
-});
-
-module.exports = router;
+	return router;
+};

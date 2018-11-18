@@ -4,21 +4,26 @@ const {
     spotifyConf
 } = require('../config/spotify');
 
+spotifyApi = new SpotifyWebApi({
+    clientId: spotifyConf.client_id,
+    clientSecret: spotifyConf.client_secret,
+    redirectUri: spotifyConf.redirect_uri
+});
+
+setSpotifyTokens = (access_token, refresh_token) => {
+    spotifyApi.setAccessToken(access_token);
+    spotifyApi.setRefreshToken(refresh_token);
+    
+}
+
 var getTopArtists = function (access_token, refresh_token, spotifyApi) {
 
-    var spotifyApi = new SpotifyWebApi({
-        clientId: spotifyConf.client_id,
-        clientSecret: spotifyConf.client_secret,
-        redirectUri: spotifyConf.redirect_uri
-    });
+    setSpotifyTokens(access_token, refresh_token);
 
     var options = {
         limit: 50,
         offset: 0,
     }
-
-    spotifyApi.setAccessToken(access_token);
-    spotifyApi.setRefreshToken(refresh_token);
 
     return spotifyApi.getMyTopArtists(options)
         .then(function (data) {
