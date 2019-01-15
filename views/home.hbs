@@ -21,15 +21,16 @@
             </div>
             <div class="sidebar">
                 <div class="sidebar__container">
-                    {{#if data}}
-                        {{#each data}}
+                    {{!-- {{log user.artists}} --}}
+                    {{#if user.artists}}
+                        {{#each user.artists }}
                         <!-- artist -->
                         <div class="sidebar__artist">
                             <div class="sidebar__photo">
-                                <img src="{{ imageUrl }}" alt="">
+                                <img src="{{ this.image }}" alt="">
                             </div>
                             <div class="sidebar__info">
-                                <span>{{ artist }}</span>
+                                <span>{{ this.name }}</span>
                             </div>
                         </div>
                         <!-- end artist -->
@@ -38,7 +39,7 @@
                         <div class="sidebar__getartists">
                             <button>
                                 <span>
-                                    Fetch Artists
+                                    Please ensure you're connected to Spotify
                                 </span>
                             </button>
                         </div>

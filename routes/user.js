@@ -43,11 +43,13 @@ module.exports = function (app, express, passport) {
 			failureRedirect: '/login'
 		}),
 		function (req, res) {
-
-			// musicController.getArtists(req, res);
+			musicController.getArtists(req, res);
 			res.redirect('/');
 		}
 	);
+	// =====================================
+	// UNLINK SPOTIFY ======================
+	// =====================================
 
 	router.get('/spotify-unlink', function(req, res) {
 		var user = req.user;

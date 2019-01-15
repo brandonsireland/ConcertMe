@@ -4,21 +4,7 @@ const {
     spotifyConf
 } = require('../config/spotify');
 
-// spotifyApi = new SpotifyWebApi({
-//     clientId: spotifyConf.client_id,
-//     clientSecret: spotifyConf.client_secret,
-//     redirectUri: spotifyConf.redirect_uri
-// });
-
-// setSpotifyTokens = (access_token, refresh_token) => {
-//     spotifyApi.setAccessToken(access_token);
-//     spotifyApi.setRefreshToken(refresh_token);
-    
-// }
-
 var getTopArtists = function (access_token, refresh_token) {
-
-    // setSpotifyTokens(access_token, refresh_token);
 
     var options = {
         limit: 50,
@@ -29,10 +15,10 @@ var getTopArtists = function (access_token, refresh_token) {
         .then(function (data) {
 
             const response = data.body.items.map(function (item) {
-                console.log(item.name);
+                // console.log(item.name);
                 return {
-                    genres: item.genres,
-                    href: item.href,
+                    // genres: item.genres,
+                    // href: item.href,
                     imageUrl: item.images[0].url,
                     artist: item.name,
                 }

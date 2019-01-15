@@ -3,6 +3,7 @@ module.exports = function (app, express, passport) {
     
     const country = require('../providers/country-data');
     const auth = require('../controllers/auth.controller');
+    const musicController = require('../controllers/music.controller');
 
     // =====================================
     // HOME PAGE ===========================
