@@ -32,7 +32,8 @@ const personSchema = new Schema({
     },
     artists: [{
         name: String,
-        image: String
+        image: String,
+        attraction_id: String
     }]
 });
 
