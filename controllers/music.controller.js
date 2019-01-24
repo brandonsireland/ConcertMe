@@ -7,7 +7,7 @@ const Person = require('../models/person');
 const getArtists = function (req, res) {
 
     const accessToken = req.user.spotify.access_token;
-    const refreshToken = req.user.spotify.refresh_token
+    const refreshToken = req.user.spotify.refresh_token;
     const user = req.user;
 
     getTopArtists(accessToken, refreshToken, spotifyConf)
@@ -44,7 +44,6 @@ saveArtistData = (user, data) => {
                         image: artistImage
                     })
                 };
-            
         });
 
         // Saves user top artists name and image

@@ -16,7 +16,7 @@ module.exports = function (app, express, passport) {
         res.render('home', {
             user: req.user,
             ip: getIp.getGEOLocation(req),
-            demo: ticketMaster.getAttractionIds(),
+            demo: ticketMaster.getAttractionIds(req),
         });
     });
 
