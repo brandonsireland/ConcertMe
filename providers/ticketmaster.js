@@ -10,6 +10,8 @@ const {
 
 var ticketMasterKey = ticketMasterConf.consumer_key;
 
+/** Refactor mapUserArtists and saveUsersArtistAttractionIds functions. */
+
 // Pushes the Current Logged In Users artists into an Array
 var mapUserArtists = (req, artists) => {
 
