@@ -2,7 +2,6 @@ module.exports = function (app, express, passport) {
     const router = express.Router();
     
     const country = require('../providers/country-data');
-    const getIp = require('../providers/geoip-lite');
     const ticketMaster = require('../providers/ticketmaster');
 
     const auth = require('../controllers/auth.controller');
@@ -15,9 +14,8 @@ module.exports = function (app, express, passport) {
     router.get('/', auth.isLoggedIn, function (req, res) {
         res.render('home', {
             user: req.user,
-            ip: getIp.getGEOLocation(req),
             ticketmasterIds: ticketMaster.getAttractionIds(req),
-            ticketmasterData: ticketMaster.ticketMasterExample()
+            ticketmasterData: ticketMaster.getTicketMasterEvents(req)
         });
     });
 

@@ -1,8 +1,11 @@
 const request = require('request');
 const bluebird = require('bluebird');
 const rp = require('request-promise');
+const getIp = require('../providers/geoip-lite');
 
 const Person = require('../models/person');
+
+const country = require('../providers/country-data');
 
 const {
     ticketMasterConf
@@ -77,11 +80,11 @@ var getAttractionIds = (req) => {
             simple: false
         };
 
-        return send(options);
+        return sendTicketMasterRequests(options);
     });
 
     // Sends a request for every artist in current users list to Ticket Master Event Api
-    send = (options) => {
+    sendTicketMasterRequests = (options) => {
         return rp(options)
             .then((body) => {
 
@@ -91,7 +94,6 @@ var getAttractionIds = (req) => {
                      * typically being the more important or correct one and save the id of the attraction to
                      * Persons Artist array  */
                     saveUsersArtistAttractionIds(req, body);
-                    
 
                 } else if (!body._embedded) {
                     // Either no attractions or artists exists. 
@@ -108,25 +110,63 @@ var getAttractionIds = (req) => {
 };
 
 // Gets the event information of the attractions
-var ticketMasterExample = () => {
+var getTicketMasterEvents = (req) => {
 
-    var latitude = "33.6685";
-    var longitude = "-116.3081";
-    var latlon = latitude + "," + longitude;
-    var radius = 25;
+    // Gets Latitude and Longitude Geo Hash data
+    const geoHash = getIp.getGEOLocation(req);
+    // Gets Country Alpha2 Code from user
+    const countryCodeAlpha = country.convertCountrytoAlpha(req.user.country);
+    // Needs to be changed to run dynamically.
+    const radius = 25;
 
-    request.get("https://app.ticketmaster.com/discovery/v2/events.json?apikey=" + ticketMasterKey + "&latlong=" + latlon, {
-        json: true
-    }, (error, response, body) => {
-        if (error) {
-            return error;
-        }
-        console.log(body)
+    /* Requests for Events */
+    const artists = [];
+
+    mapUserArtists(req, artists);
+
+    /** Makes a request for each artist to the Ticket Master API with a delay to overcome the TicketMaster API rate limit. */
+    bluebird.mapSeries(artists, function (artist) {
+
+        const attractionIds = artist.attraction_id;
+
+        const event_options = {
+            uri: `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${ticketMasterKey}&attractionId=${attractionIds}&geoPoint=${geoHash}&radius=${radius}&countryCode=${countryCodeAlpha}`,
+            json: true,
+            simple: false
+        };
+
+        return sendTicketMasterRequests(event_options);
     });
+
+    // Sends a request for every artist in current users list to Ticket Master Event Api
+    sendTicketMasterRequests = (event_options) => {
+        return rp(event_options)
+            .then((body) => {
+
+                // console.log(body);
+        
+            })
+            .delay(200)
+            .catch((error) => {
+                if (error) {
+                    throw error;
+                };
+            });
+    };
+    
+    // Needs to make a shit load of requests like before.
+    // request.get("https://app.ticketmaster.com/discovery/v2/events.json?apikey=" + ticketMasterKey + "&attractionId=" + attractionIds + "&geoPoint=" + geoHash + "&radius=" + radius + "&countryCode=" + countryCodeAlpha, {
+    //     json: true
+    // }, (error, response, body) => {
+    //     if (error) {
+    //         return error;
+    //     }
+    //     console.log(body)
+    // });
 };
 
 
 module.exports = {
     getAttractionIds,
-    ticketMasterExample,
+    getTicketMasterEvents,
 }

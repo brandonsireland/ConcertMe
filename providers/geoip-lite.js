@@ -1,36 +1,30 @@
 const geoip = require('geoip-lite');
+const geohash = require('ngeohash');
 
 var getGEOLocation = (req) => {
 
-    // let ip = req.ip;
-
     // Demo purposes
-    var ip = "47.158.164.28";
+    let ip = "47.158.164.28";
+    // let ip = req.ip;
+    // ip = ip.toString();
     
-    ip = ip.toString();
-    // console.log(ip)
-
     // ipv6
     if (ip.substr(0, 7) === "::ffff:") {
         let ip = ip.substr(7);
     }
 
-    var geoIpLat = geoip.lookup(ip).ll[0];
-    var geoIpLong = geoip.lookup(ip).ll[1];
+    const geoIpLat = geoip.lookup(ip).ll[0];
+    const geoIpLong = geoip.lookup(ip).ll[1];
 
-    // console.log('The Latitude: ' + JSON.stringify(geoIpLat));
-    // console.log('The Longitude: ' + JSON.stringify(geoIpLong));
+    console.log(geoIpLat , geoIpLong)
+    // Ticket Master geo Lat and Long are depricated, need geo hash.
 
-    return {
-        geoIpLat,
-        geoIpLong
-    }
+    const geoHashLatLong = geohash.encode(geoIpLat, geoIpLong);
+    console.log(geoHashLatLong);
 
-}
+    return geoHashLatLong;
+};
 
 module.exports = {
     getGEOLocation
 }
-
-//Get a list of all events for Adele in Canada
-// https://app.ticketmaster.com/discovery/v2/events.json?attractionId=K8vZ917Gku7&countryCode=CA&apikey=jHavF5nkVq4S3sqGKZQEkU1olOqnidMD
