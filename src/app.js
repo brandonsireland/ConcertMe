@@ -1,4 +1,4 @@
-import './js/script';
+// import './js/script';
 // import './js/slider.js';
 
-import './css/main.scss';
+// import './css/main.scss';

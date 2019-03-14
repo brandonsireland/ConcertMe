@@ -13,7 +13,7 @@ const session = require('express-session');
 const MongoStore = require('connect-mongo')(session);
 
 // Custom
-const utilities = require('./utility');
+const utilities = require('../utility');
 const configDatabase = require('./config/database');
 const handlebarsHelpers = require('./helpers/handlebars');
 
